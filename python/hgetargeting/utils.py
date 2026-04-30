@@ -116,3 +116,86 @@ def date2jd(dateobs,mjd=False):
     else:
         return t.jd
 
+
+def uniformcmdsampling(jk,hmag):
+    """ Uniformly sample the stars in the CMD space """
+
+    nstars = len(jk)
+    
+    # Pick lots of random colors and mags
+    jkr = [np.min(jk),np.max(jk)]
+    hr = [np.min(hmag),np.max(hmag)]
+    # scale jk and hmag from 0-1
+    jkscaled = (jk-jkr[0])/(jkr[1]-jkr[0])
+    hmagscaled = (hmag-hr[0])/(hr[1]-hr[0])
+    #xrnd = np.random.rand(10*nstars)
+    #yrnd = np.random.rand(10*nstars)
+    
+    ## find the closest matches with KDTree
+    #X1 = np.vstack((jkscaled,hmagscaled)).T
+    #X2 = np.vstack((xrnd,yrnd)).T
+
+    #kdt = cKDTree(X2)
+    #k = 100
+    #dist, ind = kdt.query(X1, k=k, distance_upper_bound=0.05)
+    ##index = ind[:,0]
+    ##si = np.argsort(index)
+
+    ## need to deal with duplicate matches
+    #taken = np.zeros(len(xrnd),bool)
+    #index = np.zeros(nstars,int)-1
+    #for i in range(nstars):
+    #    count = 0
+    #    while taken[ind[i,count]] and count<k-1:
+    #        count += 1
+    #    if taken[ind[i,count]]==False and count<k-1:
+    #        index[i] = ind[i,count]
+    #        taken[index[i]] = True
+    #    else:
+    #        print('problem')
+    #        #import pdb; pdb.set_trace()
+    #
+    #priority = np.zeros(nstars,int)
+    #si = np.argsort(index)
+    #priority[si] = np.arange(nstars)+1
+
+    #bad, = np.where(index==-1)
+    #if len(bad)>0:
+    #    print('some unmatched stars')
+
+    # find the closest matches with KDTree
+    jkscaled = (jk-jkr[0])/(jkr[1]-jkr[0])
+    hmagscaled = (hmag-hr[0])/(hr[1]-hr[0])
+    X1 = np.vstack((jkscaled,hmagscaled)).T
+    kdt = cKDTree(X1)
+
+    flag = True
+    count = 0
+    left = np.arange(nstars)
+    index = []
+    while (flag):
+        rnd = np.random.rand(2)
+        X2 = np.atleast_2d(rnd)
+        dist = np.sqrt((X1[:,0]-rnd[0])**2+(X1[:,1]-rnd[1])**2)
+        ind = np.argmin(dist)
+        mindist = np.min(dist)
+        #dist, ind = kdt.query(X2, k=1, distance_upper_bound=0.1)
+        #if np.isfinite(dist)==False:
+        #    print(count,dist,ind,len(left),'no matches')
+        #    count += 1
+        #    continue
+        # Found a good one
+        index.append(left[ind])
+        X1 = np.delete(X1,ind,axis=0)
+        #kdt = cKDTree(X1)
+        left = np.delete(left,ind)
+        #print(count,mindist,ind,len(left))
+        count += 1
+        if len(left)==0:
+            flag = False
+
+    priority = np.zeros(nstars,int)
+    si = np.argsort(index)
+    priority[si] = np.arange(nstars)+1
+        
+    return priority
