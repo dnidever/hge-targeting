@@ -10,5 +10,6 @@ setup(name='hgetargeting',
       url='https://github.com/sdss/hge-targeting/',
       packages=['hgetargeting'],
       package_dir={'':'python'},
-      requires=['numpy','astropy','scipy']
+      requires=['numpy','astropy','scipy'],
+      include_package_data=True
 )
