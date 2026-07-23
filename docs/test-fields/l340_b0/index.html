@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HGE Test Field Diagnostics</title><style>
+:root{--ink:#172126;--muted:#657177;--paper:#f4f1ea;--card:#fffdf8;--line:#d8d4ca;--red:#d94c3d;--blue:#214d63}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,sans-serif}
+header{padding:4.5rem 5vw;color:#f8f4e9;background:radial-gradient(circle at 84% 22%,rgba(217,76,61,.28),transparent 
+25%),linear-gradient(135deg,#122833,#214d63 56%,#183441)}
+.kicker,.eyebrow{margin:0 0 
+1rem;color:#f7b2a8;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+h1{max-width:1000px;margin:0;font:400 clamp(3rem,7vw,7rem)/.96 Georgia,serif;letter-spacing:-.05em}header 
+p:last-child{max-width:720px;margin:2rem 0 0;color:#d9e2e5;line-height:1.6}
+main{width:min(1440px,90vw);margin:auto}section{padding:6rem 0;border-bottom:1px solid 
+var(--line)}.heading{max-width:680px;margin-bottom:2.5rem}.eyebrow{color:var(--red)}
+h2{margin:0 0 1rem;font:400 clamp(2.2rem,4vw,4rem)/1 
+Georgia,serif;letter-spacing:-.035em}.heading>p:last-child{color:var(--muted);line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+figure{min-width:0;margin:0}.frame{display:block;overflow:hidden;border:1px solid 
+var(--line);background:white;cursor:zoom-in}.frame 
+img{display:block;width:100%;aspect-ratio:1.15;object-fit:contain;transition:transform .3s}.frame:hover 
+img{transform:scale(1.015)}
+figcaption{padding:1rem .1rem}figcaption strong{display:block;font-size:.95rem}figcaption 
+span{display:block;margin-top:.35rem;color:var(--muted);font-size:.76rem}
+footer{padding:2.5rem 
+5vw;color:var(--muted);font-size:.72rem}.lightbox{display:none;position:fixed;z-index:10;inset:0;place-items:center;padding:3rem;background:rgba(10,18,22,.94)}.lightbox.open{display:grid}.lightbox 
+img{max-width:92vw;max-height:88vh;background:white}.close{position:fixed;top:1rem;right:1.5rem;border:0;background:none;color:white;font-size:2.2rem;cursor:pointer}
+@media(max-width:850px){.grid,.grid.two{grid-template-columns:1fr 1fr}}@media(max-width:560px){header{padding:4rem 
+1.25rem}main{width:calc(100% - 2.5rem)}section{padding:4rem 0}.grid,.grid.two{grid-template-columns:1fr}}
+</style></head>
+<body><header><p class="kicker">Hidden Galaxy Explorer · Test field diagnostics</p>
+<h1>Target selection at ℓ = 340°, b = 0°</h1>
+<p>A visual audit trail from input catalogs through the final uniformly prioritized RGB target sample.</p>
+</header><main><section><div class="heading"><p class="eyebrow">01 · Input catalogs</p><h2>On-sky 
+coverage</h2><p>Source-density maps for the three input catalogs.</p></div><div class="grid"><figure><a class="frame" 
+href="hge_l340_b0.0_rad1.05_tmass_skydensity.png"><img src="hge_l340_b0.0_rad1.05_tmass_skydensity.png" loading="lazy" 
+alt="2MASS"></a><figcaption><strong>2MASS</strong><span>Near-infrared source density</span></figcaption></figure><figure><a 
+class="frame" href="hge_l340_b0.0_rad1.05_virac2_skydensity.png"><img src="hge_l340_b0.0_rad1.05_virac2_skydensity.png" 
+loading="lazy" alt="VIRAC2"></a><figcaption><strong>VIRAC2</strong><span>Deep VVV astrometric 
+catalog</span></figcaption></figure><figure><a class="frame" href="hge_l340_b0.0_rad1.05_apoglimpse_skydensity.png"><img 
+src="hge_l340_b0.0_rad1.05_apoglimpse_skydensity.png" loading="lazy" 
+alt="APOGLIMPSE"></a><figcaption><strong>APOGLIMPSE</strong><span>Mid-infrared source 
+density</span></figcaption></figure></div></section><section><div class="heading"><p class="eyebrow">02 · 
+Photometry</p><h2>Input color–magnitude diagrams</h2><p>Catalog photometry before merging and dereddening.</p></div><div 
+class="grid"><figure><a class="frame" href="hge_l340_b0.0_rad1.05_tmass_cmd.png"><img 
+src="hge_l340_b0.0_rad1.05_tmass_cmd.png" loading="lazy" alt="2MASS CMD"></a><figcaption><strong>2MASS CMD</strong><span>H 
+versus J − Ks</span></figcaption></figure><figure><a class="frame" href="hge_l340_b0.0_rad1.05_virac2_cmd.png"><img 
+src="hge_l340_b0.0_rad1.05_virac2_cmd.png" loading="lazy" alt="VIRAC2 CMD"></a><figcaption><strong>VIRAC2 
+CMD</strong><span>H versus J − Ks</span></figcaption></figure><figure><a class="frame" 
+href="hge_l340_b0.0_rad1.05_apoglimpse_cmd.png"><img src="hge_l340_b0.0_rad1.05_apoglimpse_cmd.png" loading="lazy" 
+alt="APOGLIMPSE CMD"></a><figcaption><strong>APOGLIMPSE CMD</strong><span>[4.5] versus [3.6] − 
+[4.5]</span></figcaption></figure></div></section><section><div class="heading"><p class="eyebrow">03 · Catalog 
+construction</p><h2>Merged and dereddened sample</h2><p>The 2MASS–VIRAC2 merge, RJCE dereddening, and photometric-quality 
+cuts.</p></div><div class="grid"><figure><a class="frame" href="hge_l340_b0.0_rad1.05_tmassvirac2_cmd.png"><img 
+src="hge_l340_b0.0_rad1.05_tmassvirac2_cmd.png" loading="lazy" alt="Merged NIR CMD"></a><figcaption><strong>Merged NIR 
+CMD</strong><span>2MASS-system photometry</span></figcaption></figure><figure><a class="frame" 
+href="hge_l340_b0.0_rad1.05_tmassvirac2_deredcmd.png"><img src="hge_l340_b0.0_rad1.05_tmassvirac2_deredcmd.png" 
+loading="lazy" alt="RJCE dereddened CMD"></a><figcaption><strong>RJCE dereddened CMD</strong><span>All matched 
+sources</span></figcaption></figure><figure><a class="frame" 
+href="hge_l340_b0.0_rad1.05_tmassvirac2_deredcmd_qacuts.png"><img 
+src="hge_l340_b0.0_rad1.05_tmassvirac2_deredcmd_qacuts.png" loading="lazy" alt="After quality 
+cuts"></a><figcaption><strong>After quality cuts</strong><span>Good NIR and GLIMPSE 
+photometry</span></figcaption></figure></div></section><section><div class="heading"><p class="eyebrow">04 · Target 
+selection</p><h2>RGB selection and neighbor rejection</h2><p>The RGB selection polygon and targets rejected because of 
+contaminating neighbors.</p></div><div class="grid two"><figure><a class="frame" 
+href="hge_l340_b0.0_rad1.05_alltargets_deredcmd.png"><img src="hge_l340_b0.0_rad1.05_alltargets_deredcmd.png" 
+loading="lazy" alt="RGB selection"></a><figcaption><strong>RGB selection</strong><span>Selection polygon and 
+candidates</span></figcaption></figure><figure><a class="frame" href="hge_l340_b0.0_rad1.05_targets_cmd_brtnei.png"><img 
+src="hge_l340_b0.0_rad1.05_targets_cmd_brtnei.png" loading="lazy" alt="Bright neighbors"></a><figcaption><strong>Bright 
+neighbors</strong><span>Targets exceeding the contamination 
+threshold</span></figcaption></figure></div></section><section><div class="heading"><p class="eyebrow">05 · Final 
+catalog</p><h2>Selected HGE targets</h2><p>The final sample after magnitude, neighbor, and uniform-CMD 
+prioritization.</p></div><div class="grid two"><figure><a class="frame" href="hge_l340_b0.0_rad1.05_targets_cmd.png"><img 
+src="hge_l340_b0.0_rad1.05_targets_cmd.png" loading="lazy" alt="Observed CMD"></a><figcaption><strong>Observed 
+CMD</strong><span>Final targets in observed color–magnitude space</span></figcaption></figure><figure><a class="frame" 
+href="hge_l340_b0.0_rad1.05_targets_deredcmd.png"><img src="hge_l340_b0.0_rad1.05_targets_deredcmd.png" loading="lazy" 
+alt="Dereddened CMD"></a><figcaption><strong>Dereddened CMD</strong><span>Final targets in intrinsic color–magnitude 
+space</span></figcaption></figure></div></section></main>
+<footer>HGE test-field targeting · Generated from hge_l340_b0.0_rad1.05</footer>
+<div class="lightbox" role="dialog" aria-modal="true"><button class="close" aria-label="Close">×</button><img alt=""></div>
+<script>
+const box=document.querySelector('.lightbox'), full=box.querySelector('img');
+document.querySelectorAll('.frame').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();full.src=a.href;full.alt=a.querySelector('img').alt;box.classList.add('open')}));
+function closeBox(){box.classList.remove('open');full.src=''}
+box.addEventListener('click',closeBox);document.querySelector('.close').addEventListener('click',closeBox);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBox()});
+</script></body></html>
